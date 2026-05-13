@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="SSL-VPN Registration - Step 2: Privacy Policy Acknowledgment" />
+  <title>Privacy Policy — SSL-VPN Registration</title>
+
+  <!-- Google Fonts: Inter for clean corporate typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Shared base stylesheet -->
+  <link rel="stylesheet" href="../style.css" />
+  <!-- Page-specific stylesheet -->
+  <link rel="stylesheet" href="page2.css" />
+</head>
+
+<body>
+
+  <div class="page-wrapper">
+    <!-- =====================
+         Header / Branding
+         ===================== -->
+    <header class="form-header">
+      <!-- Shield / VPN icon -->
+      <div class="form-header__icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 2l7 3.5v5c0 5.25-3.5 9.74-7 11.5C8.5 20.24 5 15.75 5 10.5v-5L12 2z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+        </svg>
+      </div>
+      <h1 class="form-header__title">Privacy Policy</h1>
+      <p class="form-header__subtitle">Please review and accept before proceeding</p>
+    </header>
+
+    <!-- =====================
+         Progress Indicator
+         ===================== -->
+    <nav class="progress" aria-label="Registration progress">
+      <!-- Step 1 — Completed -->
+      <div class="progress__step">
+        <div class="progress__circle progress__circle--completed" aria-label="Step 1 completed">
+          <!-- Checkmark icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3"
+            width="16" height="16">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+        <span class="progress__label">Information</span>
+      </div>
+
+      <div class="progress__connector progress__connector--completed" aria-hidden="true"></div>
+
+      <!-- Step 2 — Active -->
+      <div class="progress__step">
+        <div class="progress__circle progress__circle--active" aria-current="step">2</div>
+        <span class="progress__label progress__label--active">Policy</span>
+      </div>
+
+      <div class="progress__connector" aria-hidden="true"></div>
+
+      <!-- Step 3 — Inactive -->
+      <div class="progress__step">
+        <div class="progress__circle progress__circle--inactive">3</div>
+        <span class="progress__label">Complete</span>
+      </div>
+    </nav>
+
+    <!-- =====================
+         Policy Card
+         ===================== -->
+    <main class="card" role="main">
+      <p class="card__section-title">Step 2 of 3 — Privacy Policy Agreement</p>
+
+      <form id="policyForm" novalidate>
+
+        <!-- Scrollable policy text area -->
+        <div class="policy-box" id="policyBox" tabindex="0" aria-label="Privacy Policy content">
+
+          <h2 class="policy-box__heading">นโยบายคุ้มครองข้อมูลส่วนบุคคล (Privacy Policy)</h2>
+          <p class="policy-box__date">ของบริษัท ยูไนเต็ด อินฟอร์เมชั่น ไฮเวย์ จำกัด ประจำปี 2566</p>
+
+          <p class="policy-box__text">
+            บริษัท ยูไนเต็ด อินฟอร์เมชั่น ไฮเวย์ จำกัด ("บริษัท") ตระหนักและให้ความสำคัญกับความเป็นส่วนตัวและ
+            การคุ้มครองข้อมูลส่วนบุคคลของท่านเป็นอย่างยิ่ง จึงได้จัดให้มีนโยบายคุ้มครองข้อมูลส่วนบุคคลฉบับนี้ ("นโยบาย")
+            เพื่อแจ้งให้ท่านทราบถึงวิธีการที่บริษัทเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของท่าน ประเภทของข้อมูล
+            และวัตถุประสงค์ในการดำเนินการดังกล่าว รวมถึงระยะเวลาในการเก็บข้อมูลส่วนบุคคลของท่าน การเปิดเผยข้อมูล
+            ส่วนบุคคลให้แก่บุคคลภายนอก สิทธิของท่าน การรักษาความลับและความปลอดภัยของข้อมูลส่วนบุคคลของท่าน
+            และวิธีการที่ท่านสามารถติดต่อบริษัท
+          </p>
+
+          <p class="policy-box__text">
+            โดยนโยบายฉบับนี้ ใช้สำหรับบุคคลดังต่อไปนี้
+          </p>
+          <ul class="policy-box__list">
+            <li>ลูกค้า หรือผู้ใช้บริการของบริษัท ซึ่งเป็นบุคคลธรรมดา</li>
+            <li>ผู้ประกอบการ ร้านค้า คู่ค้า พันธมิตรทางธุรกิจ ผู้ให้บริการ คู่สัญญาของบริษัท ที่เป็นบุคคลธรรมดา</li>
+            <li>บุคคลธรรมดาที่มีความเกี่ยวข้องหรือมีความสัมพันธ์กับลูกค้าหรือผู้ใช้บริการ ผู้ประกอบการ ร้านค้า คู่ค้า
+              พันธมิตรทางธุรกิจ ผู้ให้บริการ หรือคู่สัญญาของบริษัท ที่เป็นนิติบุคคล เช่น ผู้ถือหุ้น กรรมการ
+              ผู้รับมอบอำนาจกระทำการแทน ผู้ประสานงาน ผู้ติดต่อ พนักงาน หรือบุคคลที่ได้รับมอบหมาย</li>
+            <li>บุคคลธรรมดาที่ไม่ใช่ลูกค้าหรือผู้ใช้บริการของบริษัท แต่บริษัทอาจมีความจำเป็นต้องเก็บรวบรวม ใช้
+              หรือเปิดเผยข้อมูลส่วนบุคคล เช่น บุคคลที่ได้เข้าชมเว็บไซต์หรือแอปพลิเคชันของบริษัท หรือเข้าใช้บริการ
+              ที่สถานที่ สำนักงาน หรือสาขาของบริษัท</li>
+            <li>บุคคลธรรมดาที่ได้ให้ข้อมูลส่วนบุคคลของบริษัท หรือที่บริษัทได้รับข้อมูลส่วนบุคคลมาทั้งทางตรง
+              และทางอ้อมไม่ว่าผ่านช่องทางใด</li>
+          </ul>
+
+          <h3 class="policy-box__subheading">1. คำนิยาม</h3>
+          <p class="policy-box__text">
+            <strong>"ข้อมูลส่วนบุคคล"</strong> หมายถึง ข้อมูลใดๆ
+            ที่เกี่ยวกับบุคคลธรรมดาที่ทำให้สามารถระบุตัวตนบุคคลนั้นได้
+            ไม่ว่าทางตรงหรือทางอ้อม รวมทั้งข้อมูลทุกประเภทที่สามารถบ่งชี้ตัวตน อาทิ ชื่อ หมายเลขประจำตัวบัตรประชาชน
+            ข้อมูลสถานที่อยู่ ข้อมูลออนไลน์ ข้อมูลเอกลักษณ์ทางกายภาพ ทางจิตใจ ทางสังคม เศรษฐกิจ หรือวัฒนธรรม
+            ที่สามารถระบุตัวตนได้ ทั้งนี้ ไม่รวมถึงข้อมูลของผู้ถึงแก่กรรม
+          </p>
+          <p class="policy-box__text">
+            <strong>"กฎหมายคุ้มครองข้อมูลส่วนบุคคล"</strong> หมายถึง พระราชบัญญัติคุ้มครองข้อมูลส่วนบุคคล พ.ศ. 2562
+            หรือฉบับอื่นที่อาจมีการแก้ไขในภายหลัง รวมถึงพระราชกฤษฎีกา กฎกระทรวง ประกาศ คำสั่ง
+            และกฎหมายอื่นที่เกี่ยวข้องกับการคุ้มครองข้อมูลส่วนบุคคล
+          </p>
+          <p class="policy-box__text">
+            <strong>"ข้อมูลส่วนบุคคลที่มีความอ่อนไหว"</strong> หมายถึง ข้อมูลส่วนบุคคลเกี่ยวกับเชื้อชาติ ศาสนา
+            เผ่าพันธุ์
+            ความคิดเห็นทางการเมือง ความเชื่อในลัทธิ ศาสนาหรือปรัชญา พฤติกรรมทางเพศ ประวัติอาชญากรรม ข้อมูลสุขภาพ
+            ความพิการ ข้อมูลสหภาพแรงงาน ข้อมูลพันธุกรรม ข้อมูลชีวภาพ หรือข้อมูลอื่นใด
+            ซึ่งกระทบต่อเจ้าของข้อมูลส่วนบุคคลในทำนองเดียวกันตามที่กฎหมายคุ้มครองข้อมูลส่วนบุคคลกำหนด
+          </p>
+
+          <h3 class="policy-box__subheading">2. การเก็บรวบรวมและวัตถุประสงค์ในการเก็บรวบรวมข้อมูลส่วนบุคคล</h3>
+          <p class="policy-box__text">
+            บริษัทจะเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของท่านเฉพาะกรณีที่จำเป็นหรือมีฐานทางกฎหมาย
+            ในการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลเท่านั้น ซึ่งรวมถึงกรณีการเก็บรวบรวม ใช้ หรือเปิดเผย
+            ข้อมูลส่วนบุคคลเพื่อการปฏิบัติตามกฎหมาย การปฏิบัติตามสัญญาซึ่งท่านเป็นคู่สัญญา การดำเนินการตามคำขอ
+            ของท่านก่อนเข้าทำสัญญา เพื่อประโยชน์โดยชอบด้วยกฎหมายของบริษัทหรือของบุคคลอื่น
+            เพื่อการดำเนินการตามความยินยอมของท่าน และ/หรือ ภายใต้ฐานทางกฎหมายอื่นๆ
+          </p>
+
+          <h3 class="policy-box__subheading">2.1 เพื่อการปฏิบัติตามกฎหมาย</h3>
+          <p class="policy-box__text">
+            เนื่องจากในการดำเนินธุรกิจของบริษัท บางครั้งบริษัทต้องอยู่ภายใต้การกำกับดูแล และต้องดำเนินการ
+            ตามกฎหมายและกฎระเบียบที่เกี่ยวข้อง บริษัทจึงมีความจำเป็นต้องเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคล
+            ของท่าน เพื่อให้เป็นไปตามกฎหมายและกฎระเบียบของหน่วยงานรัฐ
+          </p>
+          <ul class="policy-box__list">
+            <li>เพื่อปฏิบัติตามกฎหมายคุ้มครองข้อมูลส่วนบุคคล กฎหมายว่าด้วยการกระทำความผิดเกี่ยวกับคอมพิวเตอร์
+              กฎหมายเกี่ยวกับการประกอบกิจการโทรคมนาคม กฎหมายเกี่ยวกับภาษีต่างๆ และกฎหมายอื่นที่บริษัทต้องปฏิบัติตาม</li>
+            <li>เพื่อปฏิบัติตามกฎระเบียบและ/หรือคำสั่งของผู้มีอำนาจ (เช่น คำสั่งศาล คำสั่งของหน่วยงานรัฐ
+              หน่วยงานที่มีหน้าที่กำกับดูแล หรือพนักงานเจ้าหน้าที่ผู้มีอำนาจ)</li>
+          </ul>
+
+          <h3 class="policy-box__subheading">2.2 เพื่อการปฏิบัติตามสัญญา</h3>
+          <p class="policy-box__text">
+            ในกรณีที่ท่านได้เข้าทำสัญญากับบริษัท หรือมีคำขอก่อนเข้าทำสัญญา ไม่ว่าจะในนามตนเอง
+            หรือในฐานะตัวแทนหรือในนามของบุคคลอื่น บริษัทจะเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของท่าน
+            เพื่อดำเนินการให้เป็นไปตามสัญญาหรือตามคำขอ
+          </p>
+          <ul class="policy-box__list">
+            <li>เพื่อการดำเนินการตามคำขอของท่านก่อนการเข้าทำสัญญากับบริษัท หรือเพื่อการพิจารณาก่อนการเข้าทำสัญญา</li>
+            <li>เพื่อการให้บริการผลิตภัณฑ์และ/หรือบริการ การส่งมอบผลิตภัณฑ์และ/หรือบริการแก่ท่าน
+              การยืนยันตัวตนในการใช้บริการ การให้คำแนะนำและการจัดการเกี่ยวกับผลิตภัณฑ์และ/หรือบริการ
+              การเรียกเก็บหรือชำระค่าผลิตภัณฑ์และ/หรือบริการ</li>
+          </ul>
+
+          <h3 class="policy-box__subheading">2.3 เพื่อประโยชน์โดยชอบด้วยกฎหมาย</h3>
+          <p class="policy-box__text">
+            บริษัทจะอ้างอิงฐานประโยชน์โดยชอบด้วยกฎหมาย โดยคำนึงถึงผลประโยชน์ของบริษัทหรือของบุคคลอื่น
+            กับสิทธิขั้นพื้นฐานในข้อมูลส่วนบุคคลของท่าน
+          </p>
+          <ul class="policy-box__list">
+            <li>เพื่อบริหารกิจการของบริษัท หรือปฏิบัติตามหลักเกณฑ์ทางธุรกิจอันสมควร</li>
+            <li>เพื่อบริหารจัดการความสัมพันธ์ระหว่างบริษัทและท่าน (เช่น ดูแลลูกค้า ประเมินความพึงพอใจ
+              จัดการข้อร้องเรียน)</li>
+            <li>เพื่อพัฒนาและปรับปรุงผลิตภัณฑ์ บริการ และระบบงานต่างๆ ของบริษัทให้มีประสิทธิภาพมากขึ้น</li>
+            <li>เพื่อการรักษาความปลอดภัย (เช่น บันทึกภาพ CCTV ลงทะเบียน แลกบัตร
+              บันทึกภาพผู้ติดต่อก่อนเข้าบริเวณสถานที่ของบริษัท)</li>
+            <li>เพื่อจัดการข้อเรียกร้องและข้อพิพาท ฟ้องร้องดำเนินคดีและดำเนินกระบวนการทางกฎหมายที่เกี่ยวข้อง</li>
+            <li>เพื่อเก็บรักษา และแก้ไขปรับปรุงรายชื่อหรือรายนามของลูกค้าให้เป็นปัจจุบัน</li>
+            <li>เพื่อการดำเนินงานของบริษัท โดยอาจมีความจำเป็นต้องเปิดเผยข้อมูลส่วนบุคคลให้กับบริษัทในเครือ
+              หรือบริษัทในกลุ่มบริษัทเดียวกับ บริษัท ยูไนเต็ด อินฟอร์เมชั่น ไฮเวย์ จำกัด</li>
+          </ul>
+
+          <h3 class="policy-box__subheading">2.4 เพื่อการดำเนินการตามความยินยอมของท่าน</h3>
+          <p class="policy-box__text">
+            ในบางกรณี บริษัทอาจมีการขอความยินยอมจากท่านในการเก็บรวบรวม ใช้ หรือเปิดเผยข้อมูลส่วนบุคคลของท่าน
+            เพื่อให้ท่านได้รับประโยชน์สูงสุด และ/หรือ เพื่อให้บริษัทสามารถให้บริการที่ตอบสนองต่อความต้องการของท่าน
+          </p>
+          <ul class="policy-box__list">
+            <li>เพื่อการวิจัยและวิเคราะห์ข้อมูล การทำวิเคราะห์ทางสถิติ การวางแผนการตลาด กิจกรรมทางการตลาดของบริษัท
+              ตลอดจนนำเสนอผลิตภัณฑ์ บริการ และสิทธิประโยชน์ที่เหมาะสมแก่ท่าน</li>
+            <li>เพื่อนำไปใช้ในการประชาสัมพันธ์เกี่ยวกับการจัดประชุม อบรม สัมมนา สันทนาการ นิทรรศการ หรือกิจกรรมต่างๆ
+            </li>
+            <li>การดำเนินการอื่นที่บริษัทต้องได้รับความยินยอมจากท่าน</li>
+          </ul>
+
+        </div>
+
+        <!-- Scroll hint indicator -->
+        <div class="scroll-hint" id="scrollHint">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"
+            width="14" height="14">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+          <span>Scroll to read full policy</span>
+        </div>
+
+        <!-- Consent checkbox -->
+        <div class="consent" id="consentField">
+          <label class="consent__label" for="consentCheckbox">
+            <input type="checkbox" id="consentCheckbox" name="consent" class="consent__input" required />
+            <span class="consent__checkmark" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="3" width="14" height="14">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            </span>
+            <span class="consent__text">
+              ยินยอมและรับทราบนโยบายคุ้มครองข้อมูลส่วนบุคคล
+              <span class="required" aria-label="required">*</span>
+            </span>
+          </label>
+          <p class="field__error" id="consentError" role="alert">
+            You must accept the Privacy Policy to proceed.
+          </p>
+        </div>
+
+        <!-- Actions — Back & Next -->
+        <div class="actions actions--split">
+          <button type="button" id="backBtn" class="btn btn--secondary">
+            <!-- Back arrow SVG -->
+            <svg class="btn__arrow btn__arrow--back" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+            <span class="btn__text">Back</span>
+          </button>
+
+          <button type="submit" id="nextBtn" class="btn btn--primary" disabled>
+            <span class="btn__text">Next</span>
+            <span class="btn__loading-text">Saving...</span>
+            <!-- Forward arrow SVG -->
+            <svg class="btn__arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+            <!-- Loading spinner -->
+            <span class="btn__spinner" aria-hidden="true"></span>
+          </button>
+        </div>
+
+      </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      &copy; 2026 SSL-VPN Secure Access &middot; All rights reserved
+    </footer>
+  </div>
+
+  <!-- JavaScript — Policy consent & navigation -->
+  <script src="page2.js"></script>
+
+</body>
+
+</html>

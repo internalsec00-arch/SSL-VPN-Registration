@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="SSL-VPN Registration Form - Step 1: Personal & Company Information with Email OTP Verification" />
+  <title>SSL-VPN Registration Form</title>
+
+  <!-- Google Fonts: Inter for clean corporate typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <div class="page-wrapper">
+    <!-- =====================
+         Header / Branding
+         ===================== -->
+    <header class="form-header">
+      <!-- Shield / VPN icon -->
+      <div class="form-header__icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M12 2l7 3.5v5c0 5.25-3.5 9.74-7 11.5C8.5 20.24 5 15.75 5 10.5v-5L12 2z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4" />
+        </svg>
+      </div>
+      <h1 class="form-header__title">SSL-VPN Registration Form</h1>
+      <p class="form-header__subtitle">Secure remote access registration</p>
+    </header>
+
+    <!-- =====================
+         Progress Indicator
+         ===================== -->
+    <nav class="progress" aria-label="Registration progress">
+      <!-- Step 1 — Active -->
+      <div class="progress__step">
+        <div class="progress__circle progress__circle--active" aria-current="step">1</div>
+        <span class="progress__label progress__label--active">Information</span>
+      </div>
+
+      <div class="progress__connector" aria-hidden="true"></div>
+
+      <!-- Step 2 — Inactive -->
+      <div class="progress__step">
+        <div class="progress__circle progress__circle--inactive">2</div>
+        <span class="progress__label">Verification</span>
+      </div>
+
+      <div class="progress__connector" aria-hidden="true"></div>
+
+      <!-- Step 3 — Inactive -->
+      <div class="progress__step">
+        <div class="progress__circle progress__circle--inactive">3</div>
+        <span class="progress__label">Complete</span>
+      </div>
+    </nav>
+
+    <!-- =====================
+         Form Card
+         ===================== -->
+    <main class="card" role="main">
+      <p class="card__section-title">Step 1 of 3 — Personal &amp; Company Details</p>
+
+      <form id="registrationForm" novalidate autocomplete="off">
+
+        <!-- 1. First Name & Last Name -->
+        <div class="field">
+          <label class="field__label">
+            Name <span class="required" aria-label="required">*</span>
+          </label>
+          <div class="name-row">
+            <div class="name-row__field">
+              <input class="field__input" type="text" id="firstName" name="firstName" placeholder="First Name"
+                required autocomplete="given-name" />
+              <p class="field__error" id="firstNameError" role="alert">First name is required.</p>
+            </div>
+            <div class="name-row__field">
+              <input class="field__input" type="text" id="lastName" name="lastName" placeholder="Last Name"
+                required autocomplete="family-name" />
+              <p class="field__error" id="lastNameError" role="alert">Last name is required.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Company -->
+        <div class="field">
+          <label class="field__label" for="company">
+            Company <span class="required" aria-label="required">*</span>
+          </label>
+          <input class="field__input" type="text" id="company" name="company" placeholder="Enter company name" required
+            autocomplete="organization" />
+          <p class="field__error" id="companyError" role="alert">Company name is required.</p>
+        </div>
+
+        <!-- 3. National ID Card Number -->
+        <div class="field">
+          <label class="field__label" for="nationalId">
+            National ID Card Number <span class="required" aria-label="required">*</span>
+          </label>
+          <span class="field__hint">13-digit Thai National ID (เลขบัตรประชาชน 13 หลัก)</span>
+          <input class="field__input" type="text" id="nationalId" name="nationalId"
+            placeholder="e.g. 1234567890123" required inputmode="numeric" maxlength="13"
+            autocomplete="off" />
+          <p class="field__error" id="nationalIdError" role="alert">Please enter a valid 13-digit National ID.</p>
+        </div>
+
+        <!-- 4. Phone Number -->
+        <div class="field">
+          <label class="field__label" for="phone">
+            Phone Number <span class="required" aria-label="required">*</span>
+          </label>
+          <input class="field__input" type="tel" id="phone" name="phone" placeholder="Enter phone number" required
+            autocomplete="tel" />
+          <p class="field__error" id="phoneError" role="alert">Please enter a valid phone number (digits only).</p>
+        </div>
+
+        <!-- 4. Email Address + Request OTP Button -->
+        <div class="field">
+          <label class="field__label" for="email">
+            Email Address <span class="required" aria-label="required">*</span>
+          </label>
+          <span class="field__hint">Used to receive OTP verification code</span>
+          <div class="email-row">
+            <input class="field__input" type="email" id="email" name="email" placeholder="Enter your email" required
+              autocomplete="email" />
+            <button type="button" id="requestOtpBtn" class="btn btn--otp" disabled>
+              <svg class="btn--otp__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                stroke="currentColor" stroke-width="2" width="16" height="16">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                  d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+              </svg>
+              <span class="btn--otp__text">Request OTP</span>
+              <span class="btn--otp__loading">Sending OTP...</span>
+              <span class="btn--otp__spinner"></span>
+            </button>
+          </div>
+          <p class="field__error" id="emailError" role="alert">Please enter a valid email address.</p>
+
+          <!-- OTP Status Messages (hidden by default) -->
+          <p class="otp-status otp-status--success" id="otpSuccessMsg" role="status"></p>
+          <p class="otp-status otp-status--error" id="otpErrorMsg" role="alert"></p>
+          <p class="otp-status otp-status--expired" id="otpExpiredMsg" role="alert"></p>
+        </div>
+
+        <!-- 5. Registration OTP — 6-digit verification UI (hidden until OTP sent) -->
+        <div class="field otp-section" id="otpSection">
+          <label class="field__label">
+            Email Verification Code <span class="required" aria-label="required">*</span>
+          </label>
+          <span class="field__hint">Enter the 6-digit code sent to your email address.</span>
+
+          <!-- 6 individual OTP input boxes -->
+          <div class="otp-boxes" id="otpBoxes">
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" data-index="0" aria-label="OTP digit 1"
+              autocomplete="one-time-code" />
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" data-index="1"
+              aria-label="OTP digit 2" />
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" data-index="2"
+              aria-label="OTP digit 3" />
+            <span class="otp-separator" aria-hidden="true">–</span>
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" data-index="3"
+              aria-label="OTP digit 4" />
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" data-index="4"
+              aria-label="OTP digit 5" />
+            <input class="otp-box" type="text" inputmode="numeric" maxlength="1" data-index="5"
+              aria-label="OTP digit 6" />
+          </div>
+
+          <!-- Validation error -->
+          <p class="field__error" id="otpError" role="alert">Please enter complete 6-digit OTP</p>
+
+          <!-- OTP verification result messages -->
+          <p class="otp-verify-msg otp-verify-msg--invalid" id="otpInvalidMsg" role="alert"></p>
+          <p class="otp-verify-msg otp-verify-msg--expired" id="otpExpiredVerifyMsg" role="alert"></p>
+          <p class="otp-verify-msg otp-verify-msg--success" id="otpVerifiedMsg" role="status"></p>
+
+          <!-- Helper text with icon -->
+          <div class="otp-helper">
+            <svg class="otp-helper__icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="1.5" width="16" height="16">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" />
+            </svg>
+            <span>OTP code was sent to your email address. Please check your inbox and spam/junk folder.</span>
+          </div>
+
+          <!-- Resend countdown timer -->
+          <div class="otp-resend" id="otpResend">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="2" width="14" height="14">
+              <path stroke-linecap="round" stroke-linejoin="round"
+                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" />
+            </svg>
+            <span id="resendText">Resend OTP available in <strong id="resendTimer">5 minutes</strong></span>
+          </div>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+          <button type="submit" id="nextBtn" class="btn btn--primary" disabled>
+            <span class="btn__text">Next</span>
+            <span class="btn__loading-text">Validating...</span>
+            <!-- Arrow SVG -->
+            <svg class="btn__arrow" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+            <!-- Loading spinner -->
+            <span class="btn__spinner" aria-hidden="true"></span>
+          </button>
+        </div>
+
+      </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      &copy; 2026 SSL-VPN Secure Access &middot; All rights reserved
+    </footer>
+  </div>
+
+  <!-- JavaScript — Validation & Navigation -->
+  <script src="script.js?v=20260513b"></script>
+
+</body>
+
+</html>
