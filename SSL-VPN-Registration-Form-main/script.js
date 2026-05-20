@@ -283,8 +283,8 @@
         lastResendTime = Date.now();
         otpVerified = false;
 
-        // Show success message with masked email
-        showMessage(otpSuccessMsg, `✓ OTP sent to ${result.maskedEmail || email}`);
+        // Show success message with email
+        showMessage(otpSuccessMsg, `✓ OTP sent to ${result.email || email}`);
 
         // Show OTP section with animation
         otpSection.classList.add('is-visible');

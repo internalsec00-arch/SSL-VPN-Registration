@@ -1,13 +1,13 @@
 /**
  * ============================================================
- *  SSL-VPN Registration — Google Apps Script Backend  v2.3.0
+ *  SSL-VPN Registration — Google Apps Script Backend  v3.0.0
  * ============================================================
  *  Production-ready backend for SSL-VPN registration with:
  *    • OTP email verification (send / verify)
  *    • Automatic Google Sheets setup (headers, formatting)
- *    • Duplicate submission prevention
+ *    • Multi-submission support (logging mode)
  *    • Input sanitization & validation
- *    • Sensitive data masking (National ID, Phone, Email)
+ *    • Sensitive data masking (National ID, Phone)
  *    • Clean JSON API responses
  *
  *  Deploy as Web App:
@@ -26,7 +26,7 @@ const SPREADSHEET_ID    = '1TYEHQBspkpfneiTBwBFw7xR5AaZ5yktDIKlIIR62mCM';
 const OTP_SHEET_NAME    = 'OTP_Log';
 const REG_SHEET_NAME    = 'Registrations';
 const OTP_EXPIRY_MINUTES = 5;
-const API_VERSION       = '2.3.0';
+const API_VERSION       = '3.0.0';
 const TIMEZONE          = 'Asia/Bangkok';
 const DATE_FORMAT       = 'yyyy-MM-dd HH:mm:ss';
 
@@ -41,8 +41,7 @@ const REG_HEADERS = [
   'Phone Number',
   'Email',
   'Privacy Accepted',
-  'AUP Accepted',
-  'Email Hash'
+  'AUP Accepted'
 ];
 
 
@@ -117,7 +116,7 @@ function doGet() {
  *  3. Generate new 6-digit OTP
  *  4. Save record to OTP_Log sheet
  *  5. Send OTP via email (MailApp)
- *  6. Return masked email to caller
+ *  6. Return email to caller
  *
  * @param {Object} payload - { action, email }
  * @returns {TextOutput} JSON response
@@ -167,12 +166,12 @@ function handleSendOTP(payload) {
     });
   }
 
-  console.log('[sendOTP] ✓ OTP sent to %s', maskEmail(email));
+  console.log('[sendOTP] ✓ OTP sent to %s', email);
 
   return jsonResponse({
     success: true,
     message: 'OTP sent successfully.',
-    maskedEmail: maskEmail(email)
+    email: email
   });
 }
 
@@ -207,7 +206,7 @@ function handleVerifyOTP(payload) {
   if (result.valid) {
     // Mark as Verified
     sheet.getRange(result.row, 4).setValue('Verified');
-    console.log('[verifyOTP] ✓ OTP verified for %s', maskEmail(email));
+    console.log('[verifyOTP] ✓ OTP verified for %s', email);
 
     return jsonResponse({
       success: true,
@@ -236,16 +235,18 @@ function handleVerifyOTP(payload) {
 /**
  * handleSubmitForm — Save registration data to Registrations sheet.
  *
+ * Operates in logging mode: every valid submission creates a new row,
+ * even if identical data was previously submitted.
+ *
  * Pre-checks:
  *   1. All required fields are present
  *   2. National ID must be exactly 13 digits
  *   3. Email has a verified OTP in OTP_Log
- *   4. No duplicate submission for same email
  *
  * Sensitive fields are masked before storage:
  *   • National ID: *********0123
  *   • Phone:       ******4567
- *   • Email:       r***@gmail.com
+ *   • Email:       stored in full (not masked)
  *
  * @param {Object} payload - { action, firstName, lastName, company, nationalId, phone, email, privacyAccepted, aupAccepted }
  * @returns {TextOutput} JSON response
@@ -296,27 +297,16 @@ function handleSubmitForm(payload) {
 
   // ── Security: OTP must be verified before submit ──
   if (!isOTPVerifiedForEmail(email)) {
-    console.error('[submitForm] OTP not verified for: %s', maskEmail(email));
+    console.error('[submitForm] OTP not verified for: %s', email);
     return jsonResponse({
       success: false,
       message: 'Email must be verified via OTP before submitting.'
     });
   }
 
-  // ── Security: prevent duplicate submissions using Hash ──
-  if (isDuplicateSubmission(email)) {
-    console.warn('[submitForm] Duplicate submission blocked for hash of: %s', maskEmail(email));
-    return jsonResponse({
-      success: false,
-      message: 'A registration with this email already exists.'
-    });
-  }
-
   // ── Mask sensitive data before storage ──
   const maskedNationalId = maskNationalId(nationalId);
   const maskedPhone      = maskPhone(phone);
-  const maskedEmail      = maskEmailForStorage(email);
-  const emailHash        = generateHash(email);
 
   // ── Write to Registrations sheet ──
   try {
@@ -330,10 +320,9 @@ function handleSubmitForm(payload) {
       company,                   // Company
       maskedNationalId,          // National ID Card Number (masked)
       maskedPhone,               // Phone Number (masked)
-      maskedEmail,               // Email (masked)
+      email,                     // Email (full, not masked)
       privacyAccepted,           // Privacy Accepted
-      aupAccepted,               // AUP Accepted
-      emailHash                  // Email Hash (for duplicate check)
+      aupAccepted                // AUP Accepted
     ]);
 
     // Flush to ensure write
@@ -401,24 +390,7 @@ function parseThaiDate(value) {
   return new Date(str.replace(' ', 'T') + '+07:00');
 }
 
-/**
- * Generate a SHA-256 Hash for a string.
- * Used to uniquely identify an email without storing the plain text.
- *
- * @param {string} input - String to hash
- * @returns {string} SHA-256 Hex string
- */
-function generateHash(input) {
-  var rawHash = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, input.trim().toLowerCase());
-  var txtHash = "";
-  for (var i = 0; i < rawHash.length; i++) {
-    var hashVal = rawHash[i];
-    if (hashVal < 0) hashVal += 256;
-    if (hashVal.toString(16).length == 1) txtHash += "0";
-    txtHash += hashVal.toString(16);
-  }
-  return txtHash;
-}
+
 
 /**
  * Generate a random 6-digit OTP code.
@@ -446,22 +418,11 @@ function sanitize(str) {
   return String(str).replace(/<[^>]*>/g, '').trim();
 }
 
-/**
- * Mask email for display (e.g. "john@gmail.com" → "j***@gmail.com").
- * @param {string} email
- * @returns {string}
- */
-function maskEmail(email) {
-  const parts = email.split('@');
-  if (parts.length !== 2) return email;
-  const local  = parts[0];
-  const domain = parts[1];
-  if (local.length <= 1) return '*@' + domain;
-  return local[0] + '***@' + domain;
-}
+// maskEmail removed — emails are now displayed in full for easier verification.
 
 
 // ─── DATA MASKING ────────────────────────────────────────────
+// Note: Only National ID and Phone are masked. Email is stored in full.
 
 /**
  * Mask National ID — show only last 4 digits.
@@ -485,22 +446,6 @@ function maskNationalId(id) {
 function maskPhone(phone) {
   if (!phone || phone.length <= 4) return phone;
   return '*'.repeat(phone.length - 4) + phone.slice(-4);
-}
-
-/**
- * Mask Email for storage — show first character + *** + domain.
- * e.g. "robin@gmail.com" → "r***@gmail.com"
- *
- * @param {string} email - Full email address
- * @returns {string} Masked email
- */
-function maskEmailForStorage(email) {
-  var parts = email.split('@');
-  if (parts.length !== 2) return email;
-  var local  = parts[0];
-  var domain = parts[1];
-  if (local.length <= 1) return '*@' + domain;
-  return local[0] + '***@' + domain;
 }
 
 /**
@@ -690,28 +635,7 @@ function isOTPVerifiedForEmail(email) {
   return false;
 }
 
-/**
- * Check if a registration with this email already exists.
- * Prevents duplicate submissions.
- *
- * @param {string} email - Lowercase email
- * @returns {boolean} true if email is already registered
- */
-function isDuplicateSubmission(email) {
-  const sheet = getSheet(REG_SHEET_NAME);
-  const data  = sheet.getDataRange().getValues();
 
-  // Email Hash is in column 10 (index 9) of REG_HEADERS
-  var inputHash = generateHash(email);
-  for (var i = 1; i < data.length; i++) {
-    var rowHash = (data[i][9] || '').toString().trim();
-    if (rowHash === inputHash) {
-      return true;
-    }
-  }
-
-  return false;
-}
 
 
 // ─── EMAIL TEMPLATE ──────────────────────────────────────────

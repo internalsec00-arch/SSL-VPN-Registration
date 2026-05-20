@@ -210,7 +210,6 @@
       modalSummary.innerHTML = '';
       const maskId = (id) => id.length > 4 ? '*'.repeat(id.length - 4) + id.slice(-4) : id;
       const maskPhone = (ph) => ph.length > 4 ? '*'.repeat(ph.length - 4) + ph.slice(-4) : ph;
-      const maskEmail = (em) => { const [l, d] = em.split('@'); return l.length <= 1 ? '*@' + d : l[0] + '***@' + d; };
 
       const rows = [
         { label: 'First Name', value: data.firstName },
@@ -218,7 +217,7 @@
         { label: 'Company', value: data.company },
         { label: 'National ID', value: maskId(data.nationalId) },
         { label: 'Phone', value: maskPhone(data.phone) },
-        { label: 'Email', value: maskEmail(data.email) },
+        { label: 'Email', value: data.email },
         { label: 'Privacy', value: '✓ Accepted' },
         { label: 'AUP', value: '✓ Accepted' }
       ];
