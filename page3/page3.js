@@ -13,7 +13,7 @@
      Replace this URL with your deployed Google Apps Script
      Web App URL (same one used in Page 1 for OTP).
      ------------------------------------------------------- */
-  const GAS_URL = 'https://script.google.com/macros/s/AKfycbxC3jfs0YFQS8bwLb89UuSjBpEw7bGc4XkZudYXKk04U8bTDT8rUbc9jGHTTgSdqlhqMw/exec';
+  const GAS_URL = 'https://script.google.com/macros/s/AKfycbzQWRg-uCf-H9MpP3hHriN4y_drezrLk_HngJmkfLfweRsv44kDd-GtGSR2Rgx8Lskz/exec';
 
   /* -------------------------------------------------------
      DOM References
